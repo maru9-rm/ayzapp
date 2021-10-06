@@ -14,7 +14,9 @@
 
   <body>
     <header class="header">
-      <p class="header_pageTitle">RoMS<span class="header_pageSubtitle">Room of M's Students</span></p>
+      <%= link_to root_path do %>
+        <p class="header_pageTitle">RoMS<span class="header_pageSubtitle">Room of M's Students</span></p>
+      <% end %>
       <div class="dropdown">
         <%= image_tag 'default-avatar-male.png', class: 'header_avatar dropbtn' %>
         <div class="dropdown-content">
