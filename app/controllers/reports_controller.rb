@@ -35,6 +35,13 @@ class ReportsController < ApplicationController
       end
     end
   
+
+    def destroy
+      report = Report.find(params[:id])
+      report.destroy!
+      redirect_to root_path, notice: '削除に成功しました'
+    end
+  
   
     private
     def report_params
