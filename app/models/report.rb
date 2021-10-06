@@ -1,4 +1,6 @@
 class Report < ApplicationRecord
-    def index
-    end
+    validates :title, presence: true
+    validates :content, presence: true
+
+    
 end
