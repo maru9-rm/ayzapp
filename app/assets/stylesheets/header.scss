@@ -20,6 +20,13 @@ $header-padding-y: 16px;
     font-size: $font-lg;
   }
 
+  &_pageSubtitle {
+    margin-left: 5px;
+    color: white;
+    line-height: $avatar-size;
+    font-size: 6px;
+  }
+
   &_avatar {
     width: $avatar-size;
     height: $avatar-size;
