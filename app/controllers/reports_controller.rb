@@ -1,10 +1,11 @@
 class ReportsController < ApplicationController
+    before_action :set_report, only: [:show, :edit, :update]
+
     def index
       @reports = Report.all
     end
 
     def show
-      @report = Report.find(params[:id])
     end
 
     def new
@@ -22,11 +23,9 @@ class ReportsController < ApplicationController
     end
 
     def edit
-      @report = Report.find(params[:id])
     end
 
     def update
-      @report = Report.find(params[:id])
       if @report.update(report_params)
         redirect_to report_path(@report), notice: '更新できました'
       else
@@ -47,4 +46,9 @@ class ReportsController < ApplicationController
     def report_params
       params.require(:report).permit(:title, :content)
     end
+
+    def set_report
+      @report = Report.find(params[:id])
+    end
+
 end
