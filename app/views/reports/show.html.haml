@@ -5,12 +5,13 @@
     %div
       %p cohki0305
       %p= @report.display_created_at
-    .report_detail_actions
-      .dropdown
-        = image_tag 'actions.svg', class: 'dropbtn'
-        .dropdown-content.mini
-          = link_to '編集する', edit_report_path(@report)
-          = link_to '削除する', report_path(@report), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' }
+    - if user_signed_in?
+      .report_detail_actions
+        .dropdown
+          = image_tag 'actions.svg', class: 'dropbtn'
+          .dropdown-content.mini
+            = link_to '編集する', edit_report_path(@report)
+            = link_to '削除する', report_path(@report), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' }
   .report_content
     = @report.content
   .report_heart
