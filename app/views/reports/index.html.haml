@@ -1,0 +1,10 @@
+.container
+  = render 'tabs'
+  - @reports.each do |report|
+    = render 'report', report: report
+  = link_to new_report_path do
+    .float_btn
+      %p
+        New
+        %br>/
+        Report
