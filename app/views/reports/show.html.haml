@@ -3,9 +3,9 @@
   .report_detail
     = image_tag 'default-avatar.png'
     %div
-      %p cohki0305
+      %p= @report.author_name
       %p= @report.display_created_at
-    - if user_signed_in?
+    - if user_signed_in? && current_user.has_written?(@report)
       .report_detail_actions
         .dropdown
           = image_tag 'actions.svg', class: 'dropbtn'
