@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-    before_action :set_report, only: [:show, :edit, :update]
+    before_action :set_report, only: [:show]
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     
     def index
@@ -10,11 +10,11 @@ class ReportsController < ApplicationController
     end
 
     def new
-      @report = Report.new
+      @report = current_user.reports.build
     end
     
     def create
-      @report = Report.new(report_params)
+      @report = current_user.reports.build(report_params)
       if @report.save
         redirect_to report_path(@report), notice: '保存に成功しました'
       else
@@ -24,9 +24,11 @@ class ReportsController < ApplicationController
     end
 
     def edit
+      @report = current_user.reports.find(params[:id])
     end
 
     def update
+      @report = current_user.reports.find(params[:id])
       if @report.update(report_params)
         redirect_to report_path(@report), notice: '更新できました'
       else
@@ -37,7 +39,7 @@ class ReportsController < ApplicationController
   
 
     def destroy
-      report = Report.find(params[:id])
+      report = current_user.reports.find(params[:id])
       report.destroy!
       redirect_to root_path, notice: '削除に成功しました'
     end
