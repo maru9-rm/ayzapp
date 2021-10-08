@@ -16,3 +16,16 @@
     = @report.content
   .report_heart
     = image_tag 'heart.svg'
+
+.report
+  %h2 コメント一覧
+  - @comments.each do |comment|
+    .report_comment
+      %p= comment.content
+
+
+
+.container
+  = link_to new_report_comment_path(@report) do
+    .btn-secondary
+      コメントを追加

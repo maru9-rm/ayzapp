@@ -18,6 +18,7 @@ class Report < ApplicationRecord
     validates :content, presence: true
 
     belongs_to :user
+    has_many :comments, dependent: :destroy
 
     
     def display_created_at
