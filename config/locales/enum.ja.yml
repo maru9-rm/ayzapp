@@ -1,0 +1,6 @@
+ja:
+  enum:
+    grades:
+      grade1: '中１'
+      grade2: '中２'
+      grade3: '中３'

@@ -23,12 +23,31 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :reports,  dependent: :destroy
+  has_one :profile, dependent: :destroy
 
   def display_name
-    self.email.split('@').first
+    profile&.nickname || self.email.split('@').first
+  end
+
+  def grade
+    profile&.grade
   end
 
   def has_written?(report)
     reports.exists?(id: report.id)
   end
+
+  def prepare_profile
+    profile || build_profile
+  end
+
+
+  def avatar_image
+    if profile&.avatar&.attached?
+      profile.avatar
+    else
+      'default-avatar.png'
+    end
+  end
+
 end

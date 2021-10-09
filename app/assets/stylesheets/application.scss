@@ -8,6 +8,7 @@
 @import 'form';
 @import 'flash';
 @import 'common';
+@import 'profile';
 
 // 共通設定 ################################
 
@@ -63,5 +64,15 @@ a {
   p {
     margin-top: 10px;
     font-size: 15px;
+  }
+}
+
+
+footer {
+  text-align: left;
+  padding-top: 30px;
+  
+  img {
+    width: 150px;
   }
 }
