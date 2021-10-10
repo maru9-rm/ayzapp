@@ -1,4 +1,7 @@
 .report
+  - if @report.eyecatch.attached?
+    .report_image
+      = image_tag @report.eyecatch
   %h1.report_title= @report.title
   .report_detail
     = image_tag @report.user.avatar_image
@@ -14,8 +17,15 @@
             = link_to '削除する', report_path(@report), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' }
   .report_content
     = @report.content
-  .report_heart
-    = image_tag 'heart.svg'
+  - if user_signed_in?
+    - if current_user.has_point?(@report)
+      .report_heart
+        = link_to report_point_path(@report), data: { method: 'delete' } do
+          = image_tag 'heart-active.svg'
+    - else
+      .report_heart
+        = link_to report_point_path(@report), data: { method: 'post' } do
+          = image_tag 'heart.svg'
 
 .report
   %h2 コメント一覧

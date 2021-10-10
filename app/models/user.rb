@@ -23,18 +23,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :reports,  dependent: :destroy
+  has_many :points, dependent: :destroy
   has_one :profile, dependent: :destroy
+
+  delegate :grade, to: :profile, allow_nil: true
+
+
 
   def display_name
     profile&.nickname || self.email.split('@').first
   end
 
-  def grade
-    profile&.grade
-  end
-
   def has_written?(report)
     reports.exists?(id: report.id)
+  end
+
+  def has_point?(report)
+    points.exists?(report_id: report.id)
   end
 
   def prepare_profile

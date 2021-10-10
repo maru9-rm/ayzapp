@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   root to: 'reports#index'
   resources :reports do
     resources :comments, only: [:new, :create]
+    resource :point, only: [:create, :destroy]
   end
 
   resource :profile, only: [:show, :edit, :update]
+
+  
   
 end
