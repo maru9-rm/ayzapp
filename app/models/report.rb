@@ -19,6 +19,8 @@ class Report < ApplicationRecord
 
     belongs_to :user
     has_many :comments, dependent: :destroy
+    has_many :points, dependent: :destroy
+    has_one_attached :eyecatch
 
     
     def display_created_at
@@ -27,7 +29,10 @@ class Report < ApplicationRecord
 
     def author_name
         user.display_name
-      end
+    end
     
+    def point_count
+        points.count
+    end
     
 end

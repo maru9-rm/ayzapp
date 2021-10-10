@@ -1,13 +1,14 @@
 = link_to report_path(report) do
   .card
-    .card_image
-      = image_tag 'eyecatch1.png'
+    - if report.eyecatch.attached?
+      .card_image
+        = image_tag report.eyecatch
     .card_content
       .card_title
         = report.title
       .card_heart
         = image_tag 'heart.svg'
-        %span 23
+        %span= report.point_count
       .card_detail
         = image_tag report.user.avatar_image
         %div
