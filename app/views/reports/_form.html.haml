@@ -10,7 +10,7 @@
     %div
       = f.label :title, 'タイトル'
     %div
-      = f.text_field :title, class: 'text'
+      = f.select :title, current_user.profile.tasks.map { |k, v| [k.title, k.title ] } , {}, { class: 'text' }
     %div
       = f.label :content, '内容'
     %div

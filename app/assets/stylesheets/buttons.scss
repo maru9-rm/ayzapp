@@ -20,4 +20,19 @@
   color: $primary-color;
   padding: 16px 0;
   font-weight: bold;
+
+  &.mini {
+    padding: 10px;
+    margin-top: 10px;
+    width: 200px;
+    margin: 0;
+    height: 36px;
+    line-height: 36px;
+    padding: 0;
+    border-radius: 5px;
+  }
+
+  a {
+    color: $primary-color;
+  }
 }

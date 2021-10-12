@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   
     def show
       @profile = current_user.profile
+      @tasks = @profile.tasks
     end
   
     def edit

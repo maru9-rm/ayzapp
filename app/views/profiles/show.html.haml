@@ -1,16 +1,40 @@
 .container.profilePage
-  .profilePage_user
+  .profilePage_user.card.pd-10
     .profilePage_user_image
-      = image_tag current_user.avatar_image
+      = image_tag current_user.avatar_image , class: 'mt-50'
     .profilePage_user_basicInfo
-      .profilePage_user_name
+      .profilePage_user_name.mt-50
         .profilePage_user_displayName
-          #{current_user.display_name}(#{I18n.t("enum.grades.#{current_user.grade}")}）
-        .profilePage_user_actionButton
-          = link_to 'Edit', edit_profile_path
-      .profilePage_user_introduction
+          #{I18n.t("enum.grades.#{current_user.grade}")} #{current_user.display_name}
+      .profilePage_user_objective
+        目標：
         = current_user.profile&.objective
 
+    .btn-secondary.mt-50
+      = link_to 'edit profile', edit_profile_path
 
-  - current_user.reports.each do |report|
-    = render 'commons/report', report: report
+
+
+  .task_wrapper.mt-100
+    .card.mini
+      %h2 タスク一覧
+    = link_to new_profile_task_path(@profile) do
+      .btn-secondary.mini
+        + new task
+  - @tasks.each do |task|
+    .card.task_card
+      - if task.status == 'working'
+        .card_content
+          .task_title
+            = task.title
+        .task_status
+          .profile_tasks_actionButton
+            = link_to 'complete', profile_task_path(task), data: { method: 'delete', confirm: '本当に完了にしてもよろしいですか？' }
+          .profile_tasks_actionButton
+            = link_to 'discontinued', profile_task_path(task), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' }
+
+
+  
+
+
+

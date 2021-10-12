@@ -19,4 +19,5 @@ class Profile < ApplicationRecord
     enum grade: { grade1: 1, grade2: 2, grade3: 3 }
     belongs_to :user
     has_one_attached :avatar
+    has_many :tasks, dependent: :destroy
 end
