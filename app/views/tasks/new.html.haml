@@ -1,0 +1,11 @@
+.container
+  %ul
+    - @task.errors.full_messages.each do |message|
+      %li= message
+
+  = form_with(model: @task, url: profile_tasks_path(@task.profile), local: true) do |f|
+    %div
+      = f.label :title, '課題'
+    %div
+      = f.text_area :title
+    = f.submit '保存', class: 'btn-primary'
