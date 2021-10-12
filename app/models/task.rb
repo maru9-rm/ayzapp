@@ -2,12 +2,12 @@
 #
 # Table name: tasks
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  status     :integer          default("working"), not null
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  profile_id :integer          not null
+#  profile_id :bigint           not null
 #
 # Indexes
 #

@@ -4,13 +4,16 @@
       %li= message
   = form_with(model: report, local: true) do |f|
     %div
-      = f.label :eyecatch, 'アイキャッチ'
+      = f.label :eyecatch, '成果物'
     %div
       = f.file_field :eyecatch
     %div
       = f.label :title, 'タイトル'
     %div
-      = f.select :title, current_user.profile.tasks.map { |k, v| [k.title, k.title ] } , {}, { class: 'text' }
+      -if @tasks.present?
+        = f.select :title, current_user.profile.tasks.map { |k, v| [k.title, k.title ] } , {}, { class: 'text' }
+      -else
+        = f.text_field :title, class: 'text'
     %div
       = f.label :content, '内容'
     %div
