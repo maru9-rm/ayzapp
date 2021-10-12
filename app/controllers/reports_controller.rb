@@ -12,6 +12,7 @@ class ReportsController < ApplicationController
 
     def new
       @report = current_user.reports.build
+      @tasks =current_user&.profile&.tasks
     end
     
     def create
