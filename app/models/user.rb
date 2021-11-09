@@ -26,6 +26,12 @@ class User < ApplicationRecord
   has_many :points, dependent: :destroy
   has_one :profile, dependent: :destroy
 
+  has_many :following_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
+  has_many :followings, through: :following_relationships, source: :following
+
+  has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
+  has_many :follower, through: :follower_relationships, source: :follower
+
   delegate :grade, to: :profile, allow_nil: true
 
 
@@ -45,7 +51,7 @@ class User < ApplicationRecord
   def prepare_profile
     profile || build_profile
   end
-
+  
 
   def avatar_image
     if profile&.avatar&.attached?
