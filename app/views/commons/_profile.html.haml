@@ -1,0 +1,29 @@
+.container.profilePage
+  .profilePage_user.card.pd-10
+    .profilePage_user_image
+      = image_tag user.avatar_image , class: 'mt-50'
+    .profilePage_user_basicInfo
+      .profilePage_user_name.mt-50
+        .profilePage_user_displayName
+          -if user.profile.present?
+            #{I18n.t("enum.grades.#{user.grade}")} #{user.display_name}
+          -else
+            学年不明　匿名生徒
+      .profilePage_user_objective.mb-30
+        目標：
+        = user.profile&.objective
+    -if user == current_user
+      = link_to edit_profile_path do
+        .btn-secondary.mt-50
+          edit profile
+
+
+
+
+
+
+
+  
+
+
+

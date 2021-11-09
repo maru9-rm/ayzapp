@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resource :point, only: [:create, :destroy]
   end
 
+  resources :accounts, only: [:show]
+
   resource :profile, only: [:show, :edit, :update] do
     resources :tasks, only: [:new, :create, :destroy]
   end

@@ -4,7 +4,8 @@
       = image_tag @report.eyecatch
   %h1.report_title= @report.title
   .report_detail
-    = image_tag @report.user.avatar_image
+    = link_to account_path(@report.user) do
+      = image_tag @report.user.avatar_image
     %div
       %p= @report.author_name
       %p= @report.display_created_at
