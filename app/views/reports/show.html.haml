@@ -1,7 +1,8 @@
 .report
   - if @report.eyecatch.attached?
-    .report_image
+    .report_image.js-modal-open
       = image_tag @report.eyecatch
+
   %h1.report_title= @report.title
   .report_detail
     = link_to account_path(@report.user) do
@@ -40,3 +41,9 @@
   = link_to new_report_comment_path(@report) do
     .btn-secondary
       コメントを追加
+
+- if @report.eyecatch.attached?
+  .modal.js-modal
+    .modal_bg.js-modal-close
+    .modal_content
+      =image_tag @report.eyecatch

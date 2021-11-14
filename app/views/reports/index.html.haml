@@ -1,5 +1,5 @@
 .container
-  = render 'tabs'
+  = render 'commons/tabs'
   - @reports.each do |report|
     = render 'commons/report', report: report
   = link_to new_report_path do
