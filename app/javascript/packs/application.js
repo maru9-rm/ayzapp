@@ -1,3 +1,6 @@
+import $ from 'jquery' 
+import axios from 'axios'
+
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
@@ -18,3 +21,26 @@ require("channels")
 
 require("trix")
 require("@rails/actiontext")
+
+
+document.addEventListener('turbolinks:load', () => {
+    $('.article_title').on('click', () => {
+          axios.get('/')
+        .then((response) => {
+          console.log(response)
+        })
+      })
+
+
+    $('.js-modal-open').each(function(){
+        $(this).on('click',function(){
+            var modal = document.getElementsByClassName('js-modal');
+            $(modal).fadeIn();
+            return false;
+        });
+    });
+    $('.js-modal-close').on('click',function(){
+        $('.js-modal').fadeOut();
+        return false;
+    });
+});

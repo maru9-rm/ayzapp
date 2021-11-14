@@ -1,0 +1,4 @@
+.container
+  = render 'commons/tabs'
+  - @reports.each do |report|
+    = render 'commons/report', report: report
